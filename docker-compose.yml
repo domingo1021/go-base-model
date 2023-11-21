@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  go-test-db:
+    image: "postgres:${PG_VERSION}"
+    command: postgres -c max_connections=1000
+    container_name: db-test
+    environment:
+      POSTGRES_DB: "${PG_DB}"
+      POSTGRES_USER: "${PG_USER}"
+      POSTGRES_PASSWORD: "${PG_PASSWORD}"
+    ports:
+      - "${PG_PORT}:5432"
+  migrate:
+    image: migrate/migrate
+    command:
+      ["-path", "/migrations", "-database", "postgresql://${PG_USER}:${PG_PASSWORD}@db-test:${PG_PORT}/${PG_DB}?sslmode=disable", "up"]
+    volumes:
+      - ./db/migrations:/migrations
+    restart: on-failure
