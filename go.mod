@@ -1,4 +1,4 @@
-module github.com/go-generic
+module github.com/domingo1021/go-base-model
 
 go 1.21
 

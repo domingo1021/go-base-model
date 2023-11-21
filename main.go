@@ -4,10 +4,10 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"github.com/go-generic/util"
+	"github.com/domingo1021/go-base-model/util"
 	"log"
 
-	"github.com/go-generic/db"
+	"github.com/domingo1021/go-base-model/db"
 	_ "github.com/lib/pq"
 )
 
